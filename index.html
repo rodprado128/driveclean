@@ -155,6 +155,91 @@
     50% { transform: translate(-50%, -8px); }
   }
 
+  /* ============================================================ LIVE STATS ============================================================ */
+  .live-stats {
+    padding: 96px 24px;
+    background: linear-gradient(180deg, #FFFFFF 0%, #F4F8FE 100%);
+    text-align: center;
+    border-bottom: 1px solid var(--border-light);
+  }
+  .live-stats-inner {
+    max-width: 920px;
+    margin: 0 auto;
+  }
+  .live-stats-title {
+    font-size: clamp(32px, 5vw, 48px);
+    font-weight: 400;
+    margin-bottom: 56px;
+    letter-spacing: -0.8px;
+    line-height: 1.2;
+    color: var(--text-primary);
+  }
+  .stats-grid {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 56px;
+    flex-wrap: wrap;
+  }
+  .stat-block {
+    flex: 1;
+    min-width: 280px;
+    max-width: 380px;
+    opacity: 0;
+    transform: translateY(24px);
+  }
+  .stat-block.reveal {
+    opacity: 1;
+    transform: translateY(0);
+    transition: opacity 0.8s, transform 0.8s;
+  }
+  .stat-number {
+    font-size: clamp(64px, 9vw, 96px);
+    font-weight: 500;
+    line-height: 1;
+    letter-spacing: -2.5px;
+    background: linear-gradient(135deg, #4285F4 0%, #1A73E8 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-bottom: 12px;
+    font-variant-numeric: tabular-nums;
+    white-space: nowrap;
+  }
+  .stat-caption {
+    font-size: 16px;
+    color: var(--text-secondary);
+    line-height: 1.4;
+    max-width: 280px;
+    margin: 0 auto;
+  }
+  .stat-divider {
+    width: 1px;
+    height: 96px;
+    background: var(--border);
+    flex-shrink: 0;
+  }
+  .stats-note {
+    margin-top: 56px;
+    font-size: 13px;
+    color: var(--text-tertiary);
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .stats-note::before {
+    content: '';
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--g-green);
+    animation: pulse 2s ease-in-out infinite;
+  }
+  @keyframes pulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.4; transform: scale(1.2); }
+  }
+
   /* ============================================================ FEATURES ============================================================ */
   .features {
     padding: 96px 24px;
@@ -374,6 +459,10 @@
     .header-cta { padding: 6px 14px; font-size: 12px; }
     .hero { padding: 80px 20px 48px; }
     .hero-logo { width: 72px; height: 72px; margin-bottom: 24px; }
+    .live-stats { padding: 64px 20px; }
+    .live-stats-title { margin-bottom: 40px; }
+    .stats-grid { flex-direction: column; gap: 40px; }
+    .stat-divider { width: 80px; height: 1px; }
     .features { padding: 64px 20px; }
     .features-title, .how-inner h2 { margin-bottom: 32px; }
     .features-grid { grid-template-columns: 1fr; gap: 16px; }
@@ -438,6 +527,26 @@
     <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
       <path d="M7.41 8.59L12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z"/>
     </svg>
+  </div>
+</section>
+
+<!-- LIVE STATS -->
+<section class="live-stats">
+  <div class="live-stats-inner">
+    <div class="features-eyebrow">Em uso agora</div>
+    <h2 class="live-stats-title">Pessoas reais. Espaço real.</h2>
+    <div class="stats-grid">
+      <div class="stat-block" data-reveal>
+        <div class="stat-number" id="stat-users" data-target="7" data-suffix="">0</div>
+        <div class="stat-caption">pessoas usaram o Drive Clean</div>
+      </div>
+      <div class="stat-divider"></div>
+      <div class="stat-block" data-reveal>
+        <div class="stat-number" id="stat-gb" data-target="25" data-suffix=" GB">0</div>
+        <div class="stat-caption">recuperados em arquivos duplicados</div>
+      </div>
+    </div>
+    <p class="stats-note" id="stats-updated">Atualizado em tempo real</p>
   </div>
 </section>
 
@@ -508,7 +617,7 @@
       IMPORTANTE: substitua o href abaixo pela URL do seu Apps Script Web App.
       Padrão: https://script.google.com/macros/s/SEU_DEPLOY_ID/exec
     -->
-    <a href="https://script.google.com/macros/s/AKfycbzWwZzCaCIqqRpLwzRNEIr5d3qpcOh9y3HpCngnRQ30PPV89abn8K-YF7IIPEQIq0Sc/exec" class="google-signin" target="_blank" rel="noopener">
+    <a href="COLE_AQUI_A_URL_DO_SEU_APPS_SCRIPT" class="google-signin" target="_blank" rel="noopener">
       <svg width="18" height="18" viewBox="0 0 18 18">
         <path d="M17.64 9.2c0-.637-.057-1.251-.164-1.84H9v3.481h4.844c-.209 1.125-.843 2.078-1.796 2.717v2.258h2.908c1.702-1.567 2.684-3.874 2.684-6.615z" fill="#4285F4"/>
         <path d="M9 18c2.43 0 4.467-.806 5.956-2.18l-2.908-2.259c-.806.54-1.837.86-3.048.86-2.344 0-4.328-1.584-5.036-3.711H.957v2.332A8.997 8.997 0 0 0 9 18z" fill="#34A853"/>
@@ -606,6 +715,108 @@
 
   // Ano dinâmico no footer
   document.getElementById('year').textContent = new Date().getFullYear();
+
+  // ============================================================
+  // LIVE STATS: fetch + animacao
+  // ============================================================
+  // URL bruta do stats.json (substitui no setup):
+  // https://raw.githubusercontent.com/SEU_USUARIO/SEU_REPO/main/stats.json
+  // Adicionado cache buster (?t=timestamp) para evitar CDN cache do GitHub
+  const STATS_URL = 'https://raw.githubusercontent.com/SEU_USUARIO/SEU_REPO/main/stats.json';
+
+  let statsAnimated = false;
+
+  function bytesToGB(bytes) {
+    return bytes / (1024 * 1024 * 1024);
+  }
+
+  function formatNumber(n, decimals) {
+    if (decimals && decimals > 0) {
+      return n.toFixed(decimals).replace('.', ',');
+    }
+    return Math.round(n).toString();
+  }
+
+  // Anima um numero de 0 ate target durante "duration" ms.
+  // Usa easeOutCubic para acelerar no inicio e desacelerar no fim.
+  function animateNumber(el, target, duration, suffix, decimals) {
+    const startTime = performance.now();
+    suffix = suffix || '';
+
+    function frame(now) {
+      const elapsed = now - startTime;
+      const progress = Math.min(elapsed / duration, 1);
+      // easeOutCubic
+      const eased = 1 - Math.pow(1 - progress, 3);
+      const value = target * eased;
+      el.textContent = formatNumber(value, decimals) + suffix;
+      if (progress < 1) requestAnimationFrame(frame);
+    }
+    requestAnimationFrame(frame);
+  }
+
+  function animateStats(users, gb) {
+    if (statsAnimated) return;
+    statsAnimated = true;
+
+    const usersEl = document.getElementById('stat-users');
+    const gbEl = document.getElementById('stat-gb');
+
+    // Duracao maior para numeros maiores soa mais natural
+    animateNumber(usersEl, users, 1800, '', 0);
+    // GB com 1 decimal se < 100, sem decimal se maior
+    animateNumber(gbEl, gb, 2200, ' GB', gb < 100 ? 1 : 0);
+  }
+
+  // Observer dispara animacao quando a secao entra em view
+  const statsSection = document.querySelector('.live-stats');
+  const statsObserver = new IntersectionObserver(function(entries) {
+    entries.forEach(function(entry) {
+      if (entry.isIntersecting && !statsAnimated) {
+        // Usa os data-target ja presentes como fallback inicial
+        const usersTarget = parseFloat(document.getElementById('stat-users').dataset.target) || 0;
+        const gbTarget = parseFloat(document.getElementById('stat-gb').dataset.target) || 0;
+        animateStats(usersTarget, gbTarget);
+      }
+    });
+  }, { threshold: 0.3 });
+  if (statsSection) statsObserver.observe(statsSection);
+
+  // Fetch dos valores reais. Cache buster para pegar versao fresca.
+  fetch(STATS_URL + '?t=' + Date.now(), { cache: 'no-store' })
+    .then(function(r) {
+      if (!r.ok) throw new Error('HTTP ' + r.status);
+      return r.json();
+    })
+    .then(function(stats) {
+      // Atualiza data-target para refletir valores reais
+      const users = stats.totalUsers || 0;
+      const gb = bytesToGB(stats.totalBytesFreed || 0);
+
+      document.getElementById('stat-users').dataset.target = users;
+      document.getElementById('stat-gb').dataset.target = gb;
+
+      // Se a secao ja foi observada/animada com fallback, reanima com valores reais
+      if (statsAnimated) {
+        statsAnimated = false;
+        animateStats(users, gb);
+      }
+
+      // Atualiza timestamp
+      if (stats.lastUpdated) {
+        const d = new Date(stats.lastUpdated);
+        const note = document.getElementById('stats-updated');
+        if (note) {
+          note.textContent = 'Atualizado em ' +
+            d.toLocaleDateString('pt-BR') + ' às ' +
+            d.toLocaleTimeString('pt-BR', { hour: '2-digit', minute: '2-digit' });
+        }
+      }
+    })
+    .catch(function(err) {
+      console.warn('Falha ao buscar stats remotos, usando fallback:', err);
+      // Mantem os valores em data-target do HTML (7 usuarios, 25 GB)
+    });
 </script>
 
 </body>
